@@ -10,10 +10,10 @@ Write a simple application that distributes virtual machines on servers in a dat
 
 ### Some details
 
-- A server have some space to host virtual machines
+- A server have some space to host virtual machines (capacity)
 - When hosted on a server, a virtual machine occupy a certain amount of space
 - The number of virtual machines a server can host vary with the server size and the virtual machines size
-- The application must receive some servers as input and some virtual machines to distribute on them
+- The application must receive some servers and some virtual machines to distribute on them as input
 
 ### Specifications
 
@@ -25,11 +25,11 @@ Write a simple application that distributes virtual machines on servers in a dat
 ```javascript
 {
     "servers": [{
-        "id": "serveur1",
-        "size": 4
+        "id": "server1",
+        "capacity": 4
     }, {
-        "id": "serveur2",
-        "size": 6
+        "id": "server2",
+        "capacity": 6
     }],
     "virtualMachines": [{
         "id": "VM1",
@@ -41,7 +41,8 @@ Write a simple application that distributes virtual machines on servers in a dat
         "id": "VM3",
         "size": 2
     }]
-}```
+}
+```
 
 ### Example Output
 
@@ -67,4 +68,5 @@ Write a simple application that distributes virtual machines on servers in a dat
             "size": 4
         }]
     }]
-}```
+}
+```
