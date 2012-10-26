@@ -1,7 +1,7 @@
 package utils;
 
-import park.Park;
-import park.Server;
+import datacenter.Datacenter;
+import datacenter.Server;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,15 @@ import java.util.List;
 public class ParkBuilder {
     private List<Server> servers = new ArrayList<Server>();
 
-    public static Park a(ParkBuilder builder) {
+    public static Datacenter a(ParkBuilder builder) {
         return builder.build();
     }
 
-    public Park build() {
-        return new Park(servers);
+    public Datacenter build() {
+        return new Datacenter(servers);
     }
 
-    public static ParkBuilder aPark() {
+    public static ParkBuilder aDatacenter() {
         return new ParkBuilder();
     }
 

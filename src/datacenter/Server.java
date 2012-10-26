@@ -1,16 +1,16 @@
-package park;
+package datacenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Server {
     private String id;
-    private int totalSpace;
+    private int capacity;
     private List<Vm> vms = new ArrayList<Vm>();
 
-    public Server(String id, int totalSpace) {
+    public Server(String id, int capacity) {
         this.id = id;
-        this.totalSpace = totalSpace;
+        this.capacity = capacity;
     }
 
     public String getId() {
@@ -21,8 +21,8 @@ public class Server {
         return vms.contains(vm);
     }
 
-    public int getTotalSpace() {
-        return totalSpace;
+    public int getCapacity() {
+        return capacity;
     }
 
     public boolean installVm(Vm vm) {
