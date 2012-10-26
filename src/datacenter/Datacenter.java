@@ -1,28 +1,28 @@
-package park;
+package datacenter;
 
 import java.util.List;
 
-public class Park {
-    private List<Server> park;
+public class Datacenter {
+    private List<Server> datacenter;
 
-    public Park(List<Server> park) {
-        this.park = park;
+    public Datacenter(List<Server> datacenter) {
+        this.datacenter = datacenter;
     }
 
     public boolean placeVm(Vm vm) {
         if (parkIsEmpty())
             return false;
 
-        Server firstServer = park.get(0);
+        Server firstServer = datacenter.get(0);
         return firstServer.installVm(vm);
     }
 
     private boolean parkIsEmpty() {
-        return park.isEmpty();
+        return datacenter.isEmpty();
     }
 
     public String findVm(Vm vm) {
-        for (Server s : park)
+        for (Server s : datacenter)
             if (s.isHostingVm(vm))
                 return s.getId();
 

@@ -1,5 +1,5 @@
 package utils;
-import park.Vm;
+import datacenter.Vm;
 
 public class VmBuilder {
     private int size;

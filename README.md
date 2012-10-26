@@ -8,19 +8,18 @@ At [iWeb Technologies](http://iweb.com/), we send a little technical test to tho
 
 Write a simple application that distributes virtual machines on servers in a datacenter. The application can be written in any language.
 
-### Some details
-
-- A server have some space to host virtual machines (capacity)
-- When hosted on a server, a virtual machine occupy a certain amount of space
-- The number of virtual machines a server can host vary with the server size and the virtual machines size
-- The application must receive some servers and some virtual machines to distribute on them as input
-
 ### Specifications
 
-- The load of the virtual machines on the server must be as balanced as possible
-- Servers have a defined space and cannot host virtual machines beyond their capacity
+- A server have space to host virtual machines (pre-defined capacity)
+- When hosted on a server, a virtual machine occupy a certain amount of space (size)
+- The number of virtual machines a server can host vary with the capacity of the server and the size of the virtual machines
+- The virtual machines must installed on a server in the order they are received as input
+- The utilization percentage of each server must be as evenly distributed as possible in the datacenter
+- Servers cannot host virtual machines beyond their capacity
 
 ### Example Input
+
+As input, the application must receive some servers and some virtual machines
 
 ```javascript
 {
@@ -45,6 +44,8 @@ Write a simple application that distributes virtual machines on servers in a dat
 ```
 
 ### Example Output
+
+As output, the application has distributed the virtual machines on the available servers
 
 ```javascript
 {
