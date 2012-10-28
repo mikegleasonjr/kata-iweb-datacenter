@@ -13,14 +13,16 @@ public class Datacenter {
         if (parkIsEmpty())
             return false;
 
-        Server firstServer = datacenter.get(0);
-        return firstServer.installVm(vm);
+        return true;
+
+        //Server firstServer = datacenter.get(0);
+        //return firstServer.installVm(vm);
     }
 
     private boolean parkIsEmpty() {
         return datacenter.isEmpty();
     }
-
+/*
     public String findVm(Vm vm) {
         for (Server s : datacenter)
             if (s.isHostingVm(vm))
@@ -28,4 +30,5 @@ public class Datacenter {
 
         return "";
     }
+*/
 }

@@ -19,7 +19,7 @@ Write a simple application that distributes virtual machines on servers in a dat
 
 ### Example Input
 
-As input, the application must receive some servers and some virtual machines
+As input, the application must receive some servers and some virtual machines:
 
 ```javascript
 {
@@ -45,7 +45,7 @@ As input, the application must receive some servers and some virtual machines
 
 ### Example Output
 
-As output, the application has distributed the virtual machines on the available servers
+As output, the application has distributed the virtual machines on the available servers:
 
 ```javascript
 {

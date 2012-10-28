@@ -49,10 +49,6 @@ public class DatacenterTest extends TestCase {
         return returnValue;
     }
 
-    private String theServerNameTheVmWasInstalledOn() {
-        return datacenter.findVm(vm);
-    }
-
     private Datacenter datacenter = null;
     private Vm vm = null;
     private boolean returnValue = false;
