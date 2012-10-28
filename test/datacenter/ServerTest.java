@@ -52,6 +52,56 @@ public class ServerTest extends TestCase {
         assertThat(theVmWasInstalled(), is(false));
     }
 
+    @Test
+    public void testAServerWithVMsInstalledCanInstallAnotherOneWhenTheRemainingSpaceAvailableEqualsTheVmSize() throws Exception {
+        Given(aServer().withId("server_1").withTotalSpace(30).withVm(aVm().withSize(13)).withVm(aVm().withSize(13)));
+        Given(aVm().withSize(4));
+
+        WhenInstallingTheVmOnTheServer();
+
+        assertThat(theVmWasInstalled(), is(true));
+    }
+
+    @Test
+    public void testAServerWithVMsInstalledCanInstallAnotherOneWhenTheRemainingSpaceAvailableIsGreaterThanTheVmSize() throws Exception {
+        Given(aServer().withId("server_1").withTotalSpace(30).withVm(aVm().withSize(10)).withVm(aVm().withSize(10)));
+        Given(aVm().withSize(5));
+
+        WhenInstallingTheVmOnTheServer();
+
+        assertThat(theVmWasInstalled(), is(true));
+    }
+
+    @Test
+    public void testAServerWithVMsInstalledCanInstallAnotherOneWhenTheRemainingSpaceAvailableIsLowerThanTheVmSize() throws Exception {
+        Given(aServer().withId("server_1").withTotalSpace(30).withVm(aVm().withSize(14)).withVm(aVm().withSize(14)));
+        Given(aVm().withSize(3));
+
+        WhenInstallingTheVmOnTheServer();
+
+        assertThat(theVmWasInstalled(), is(false));
+    }
+
+    @Test
+    public void testAServerHostsTheVMWhenItIsSuccessfullyInstalledOnIt() throws Exception {
+        Given(aServer().withId("server_1").withTotalSpace(30));
+        Given(aVm().withSize(12));
+
+        WhenInstallingTheVmOnTheServer();
+
+        assertThat(theServerHostsTheVmAfterInstallation(), is(true));
+    }
+
+    @Test
+    public void testAServerDoesNotHostTheVMWhenItIsNotSuccessfullyInstalledOnIt() throws Exception {
+        Given(aServer().withId("server_1").withTotalSpace(30));
+        Given(aVm().withSize(45));
+
+        WhenInstallingTheVmOnTheServer();
+
+        assertThat(theServerHostsTheVmAfterInstallation(), is(false));
+    }
+
     @Override
     public void tearDown() throws Exception {
         server = null;
@@ -74,6 +124,10 @@ public class ServerTest extends TestCase {
     private boolean theVmWasInstalled()
     {
         return vmInstalled;
+    }
+
+    private boolean theServerHostsTheVmAfterInstallation() {
+        return server.isHostingVm(vm);
     }
 
     private int theAvailableSpaceOnTheServer() {

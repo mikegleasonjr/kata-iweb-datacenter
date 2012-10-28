@@ -21,11 +21,6 @@ public class Server {
         return vms.contains(vm);
     }
 
-    public int getCapacity() {
-        return 0;
-        //return capacity;
-    }
-
     public boolean installVm(Vm vm) {
         if (vmFitsOnServer(vm))
             return vms.add(vm);
@@ -34,20 +29,16 @@ public class Server {
     }
 
     private boolean vmFitsOnServer(Vm vm) {
-        return false;
-        //return capacity >= vm.getSize();
-        //return getRemainingSpace() >= vm.getSize();
+        return getAvailableSpace() >= vm.getSize();
     }
 
     public int getAvailableSpace() {
-        return 0;
-/*
         int spaceTaken = 0;
 
-        for (Vm vm : vms)
+        for (Vm vm : vms) {
             spaceTaken += vm.getSize();
+        }
 
         return capacity - spaceTaken;
-*/
     }
 }
