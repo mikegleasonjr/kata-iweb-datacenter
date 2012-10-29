@@ -3,13 +3,12 @@ package utils;
 import datacenter.Server;
 import datacenter.Vm;
 
-import java.rmi.ServerError;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ServerBuilder {
     private String id;
-    private int space;
+    private int capacity;
     private List<Vm> initialVms = new ArrayList<Vm>();
 
     public static Server a(ServerBuilder builder) {
@@ -17,7 +16,7 @@ public class ServerBuilder {
     }
 
     public Server build() {
-        Server s = new Server(id, space);
+        Server s = new Server(id, capacity);
 
         for (Vm vm : initialVms) {
             s.installVm(vm);
@@ -35,8 +34,8 @@ public class ServerBuilder {
         return this;
     }
 
-    public ServerBuilder withTotalSpace(int space) {
-        this.space = space;
+    public ServerBuilder withCapacity(int capacity) {
+        this.capacity = capacity;
         return this;
     }
 
