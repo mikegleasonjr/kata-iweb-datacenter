@@ -22,14 +22,7 @@ public class Server {
     }
 
     public boolean installVm(Vm vm) {
-        if (vmFitsOnServer(vm))
-            return vms.add(vm);
-
-        return false;
-    }
-
-    private boolean vmFitsOnServer(Vm vm) {
-        return getAvailableSpace() >= vm.getSize();
+        return vms.add(vm);
     }
 
     public int getAvailableSpace() {

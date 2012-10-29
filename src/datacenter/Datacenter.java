@@ -13,22 +13,26 @@ public class Datacenter {
         if (parkIsEmpty())
             return false;
 
-        return true;
+        for (Server s : datacenter) {
+            if (s.getAvailableSpace() >= vm.getSize()) {
+                return s.installVm(vm);
+            }
+        }
 
-        //Server firstServer = datacenter.get(0);
-        //return firstServer.installVm(vm);
+        return false;
     }
 
     private boolean parkIsEmpty() {
         return datacenter.isEmpty();
     }
-/*
-    public String findVm(Vm vm) {
-        for (Server s : datacenter)
-            if (s.isHostingVm(vm))
-                return s.getId();
 
-        return "";
+    public Server findVm(Vm vm) {
+        for (Server s : datacenter) {
+            if (s.isHostingVm(vm)) {
+                return s;
+            }
+        }
+
+        return null;
     }
-*/
 }
