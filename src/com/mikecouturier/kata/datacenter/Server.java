@@ -42,4 +42,17 @@ public class Server {
     public List<Vm> getVms() {
         return new ArrayList<Vm>(vms);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(String.format("%s (%d%% utilization)\n", id, getUtilizationPct()));
+
+        for (Vm vm : vms) {
+            builder.append(String.format("  %s", vm.toString()));
+        }
+
+        return builder.toString();
+    }
 }

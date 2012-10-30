@@ -11,10 +11,6 @@ public class ServerBuilder {
     private int capacity;
     private List<Vm> initialVms = new ArrayList<Vm>();
 
-    public static Server a(ServerBuilder builder) {
-        return builder.build();
-    }
-
     public Server build() {
         Server s = new Server(id, capacity);
 

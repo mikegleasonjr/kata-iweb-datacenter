@@ -9,10 +9,6 @@ import java.util.List;
 public class DatacenterBuilder {
     private List<Server> datacenter = new ArrayList<Server>();
 
-    public static Datacenter a(DatacenterBuilder builder) {
-        return builder.build();
-    }
-
     public Datacenter build() {
         return new Datacenter(datacenter);
     }

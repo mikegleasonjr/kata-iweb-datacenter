@@ -56,10 +56,7 @@ public class Datacenter {
         StringBuilder builder = new StringBuilder();
 
         for (Server s : datacenter) {
-            builder.append(String.format("%s (%d%% utilization)\n", s.getId(), s.getUtilizationPct()));
-            for (Vm vm : s.getVms()) {
-                builder.append(String.format("  %s (size %d)\n", vm.getId(), vm.getSize()));
-            }
+            builder.append(s);
         }
 
         return builder.toString();

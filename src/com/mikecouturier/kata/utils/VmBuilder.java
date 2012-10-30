@@ -5,10 +5,6 @@ public class VmBuilder {
     private int size;
     private String id;
 
-    public static Vm a(VmBuilder builder) {
-        return builder.build();
-    }
-
     public static VmBuilder aVm() {
         return new VmBuilder();
     }
