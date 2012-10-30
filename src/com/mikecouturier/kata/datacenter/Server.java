@@ -1,4 +1,4 @@
-package datacenter;
+package com.mikecouturier.kata.datacenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +33,13 @@ public class Server {
         }
 
         return capacity - spaceTaken;
+    }
+
+    public int getUtilizationPct() {
+        return Math.round(((capacity - getAvailableSpace()) / (float)capacity) * 100f);
+    }
+
+    public List<Vm> getVms() {
+        return new ArrayList<Vm>(vms);
     }
 }
