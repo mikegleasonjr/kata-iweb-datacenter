@@ -13,66 +13,66 @@ import static com.mikecouturier.kata.utils.VmBuilder.aVm;
 public class DatacenterTest extends TestCase {
 
     public void testADatacenterWithNoServerCannotHostAVm() {
-        Given(aVm().withSize(5));
-        Given(aDatacenter());
+        given(aVm().withSize(5));
+        given(aDatacenter());
 
-        WhenFindingAServerForTheVm();
+        whenFindingAServerForTheVm();
 
         assertThat(theVmWasInstalledOnAServer(), is(false));
     }
 
     public void testADatacenterWithAServerWithExactlyEnoughSpaceWillHostTheVm() {
-        Given(aVm().withSize(7));
-        Given(aDatacenter().with(aServer().withCapacity(17).withId("server_1").withVm(aVm().withSize(10))));
+        given(aVm().withSize(7));
+        given(aDatacenter().with(aServer().withCapacity(17).withId("server_1").withVm(aVm().withSize(10))));
 
-        WhenFindingAServerForTheVm();
+        whenFindingAServerForTheVm();
 
         assertThat(theVmWasInstalledOnAServer(), is(true));
         assertThat(theServerNameTheVmWasInstalledOn(), is("server_1"));
     }
 
     public void testADatacenterWithAServerWithMoreThanEnoughSpaceWillHostTheVm() {
-        Given(aVm().withSize(20));
-        Given(aDatacenter().with(aServer().withCapacity(100).withId("server_1").withVm(aVm().withSize(50))));
+        given(aVm().withSize(20));
+        given(aDatacenter().with(aServer().withCapacity(100).withId("server_1").withVm(aVm().withSize(50))));
 
-        WhenFindingAServerForTheVm();
+        whenFindingAServerForTheVm();
 
         assertThat(theVmWasInstalledOnAServer(), is(true));
         assertThat(theServerNameTheVmWasInstalledOn(), is("server_1"));
     }
 
     public void testADatacenterWithAServerWithoutEnoughSpaceWillNotHostTheVm() {
-        Given(aVm().withSize(10));
-        Given(aDatacenter().with(aServer().withCapacity(30).withId("server_1").withVm(aVm().withSize(21))));
+        given(aVm().withSize(10));
+        given(aDatacenter().with(aServer().withCapacity(30).withId("server_1").withVm(aVm().withSize(21))));
 
-        WhenFindingAServerForTheVm();
+        whenFindingAServerForTheVm();
 
         assertThat(theVmWasInstalledOnAServer(), is(false));
     }
 
     public void testADatacenterWithTwoServersWithOnlyOneHavingEnoughSpaceForTheVmWillInstallTheVmOnIt() {
-        Given(aVm().withSize(17));
-        Given(aDatacenter()
+        given(aVm().withSize(17));
+        given(aDatacenter()
                 .with(aServer().withCapacity(50).withId("server_1").withVm(aVm().withSize(35)))
                 .with(aServer().withCapacity(45).withId("server_2").withVm(aVm().withSize(25)))
         );
 
-        WhenFindingAServerForTheVm();
+        whenFindingAServerForTheVm();
 
         assertThat(theVmWasInstalledOnAServer(), is(true));
         assertThat(theServerNameTheVmWasInstalledOn(), is("server_2"));
     }
 
     public void testADatacenterWithServersWillInstallTheVmOnTheOneHavingLessUtilizationPercentage() {
-        Given(aVm().withSize(20));
-        Given(aDatacenter()
+        given(aVm().withSize(20));
+        given(aDatacenter()
                 .with(aServer().withCapacity(105).withId("server_1").withVm(aVm().withSize(55)).withVm(aVm().withSize(5)))  // 57% utilization
                 .with(aServer().withCapacity(105).withId("server_2").withVm(aVm().withSize(57)).withVm(aVm().withSize(4)))  // 58% utilization
                 .with(aServer().withCapacity(105).withId("server_3").withVm(aVm().withSize(56)).withVm(aVm().withSize(3)))  // 56% utilization
                 .with(aServer().withCapacity(105).withId("server_4").withVm(aVm().withSize(60)).withVm(aVm().withSize(2)))  // 59% utilization
         );
 
-        WhenFindingAServerForTheVm();
+        whenFindingAServerForTheVm();
 
         assertThat(theVmWasInstalledOnAServer(), is(true));
         assertThat(theServerNameTheVmWasInstalledOn(), is("server_3"));
@@ -85,15 +85,15 @@ public class DatacenterTest extends TestCase {
         returnValue = false;
     }
 
-    private void Given(DatacenterBuilder datacenterBuilder) {
+    private void given(DatacenterBuilder datacenterBuilder) {
         datacenter = datacenterBuilder.build();
     }
 
-    private void Given(VmBuilder vmBuilder) {
+    private void given(VmBuilder vmBuilder) {
         vm = vmBuilder.build();
     }
 
-    private void WhenFindingAServerForTheVm() {
+    private void whenFindingAServerForTheVm() {
         returnValue = datacenter.installVm(vm);
     }
 

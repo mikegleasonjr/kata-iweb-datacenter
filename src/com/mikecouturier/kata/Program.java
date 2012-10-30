@@ -13,21 +13,21 @@ import static com.mikecouturier.kata.utils.VmBuilder.aVm;
 public class Program {
 
     public static void main(String[] args) {
-        Datacenter datacenter = DatacenterAsInput();    // instead of reading input from JSON, too lazy ;)
-        List<Vm> vms = VmsAsInput();                    // instead of reading input from JSON, too lazy ;)
+        Datacenter datacenter = datacenterAsInput();    // instead of reading input from JSON, too lazy ;)
+        List<Vm> vms = vmsAsInput();                    // instead of reading input from JSON, too lazy ;)
 
         installVmsInDatacenter(vms, datacenter);
         printDatacenter(datacenter);
     }
 
-    private static Datacenter DatacenterAsInput() {
+    private static Datacenter datacenterAsInput() {
         return aDatacenter()
                 .with(aServer().withId("server1").withCapacity(4))
                 .with(aServer().withId("server2").withCapacity(6))
                 .build();
     }
 
-    private static List<Vm> VmsAsInput() {
+    private static List<Vm> vmsAsInput() {
         return Arrays.asList(
                 aVm().withId("VM1").withSize(1).build(),
                 aVm().withId("VM2").withSize(4).build(),
