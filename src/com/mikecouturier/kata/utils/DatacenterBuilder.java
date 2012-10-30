@@ -1,7 +1,7 @@
-package utils;
+package com.mikecouturier.kata.utils;
 
-import datacenter.Datacenter;
-import datacenter.Server;
+import com.mikecouturier.kata.datacenter.Datacenter;
+import com.mikecouturier.kata.datacenter.Server;
 
 import java.util.ArrayList;
 import java.util.List;

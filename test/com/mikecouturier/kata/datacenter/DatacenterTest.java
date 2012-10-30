@@ -1,19 +1,17 @@
-package datacenter;
+package com.mikecouturier.kata.datacenter;
 
 import junit.framework.TestCase;
-import org.junit.Test;
-import utils.DatacenterBuilder;
-import utils.VmBuilder;
+import com.mikecouturier.kata.utils.DatacenterBuilder;
+import com.mikecouturier.kata.utils.VmBuilder;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static utils.DatacenterBuilder.aDatacenter;
-import static utils.ServerBuilder.aServer;
-import static utils.VmBuilder.aVm;
+import static com.mikecouturier.kata.utils.DatacenterBuilder.aDatacenter;
+import static com.mikecouturier.kata.utils.ServerBuilder.aServer;
+import static com.mikecouturier.kata.utils.VmBuilder.aVm;
 
 public class DatacenterTest extends TestCase {
 
-    @Test
     public void testADatacenterWithNoServerCannotHostAVm() {
         Given(aVm().withSize(5));
         Given(aDatacenter());
@@ -23,7 +21,6 @@ public class DatacenterTest extends TestCase {
         assertThat(theVmWasInstalledOnAServer(), is(false));
     }
 
-    @Test
     public void testADatacenterWithAServerWithExactlyEnoughSpaceWillHostTheVm() {
         Given(aVm().withSize(7));
         Given(aDatacenter().with(aServer().withCapacity(17).withId("server_1").withVm(aVm().withSize(10))));
@@ -34,7 +31,6 @@ public class DatacenterTest extends TestCase {
         assertThat(theServerNameTheVmWasInstalledOn(), is("server_1"));
     }
 
-    @Test
     public void testADatacenterWithAServerWithMoreThanEnoughSpaceWillHostTheVm() {
         Given(aVm().withSize(20));
         Given(aDatacenter().with(aServer().withCapacity(100).withId("server_1").withVm(aVm().withSize(50))));
@@ -45,7 +41,6 @@ public class DatacenterTest extends TestCase {
         assertThat(theServerNameTheVmWasInstalledOn(), is("server_1"));
     }
 
-    @Test
     public void testADatacenterWithAServerWithoutEnoughSpaceWillNotHostTheVm() {
         Given(aVm().withSize(10));
         Given(aDatacenter().with(aServer().withCapacity(30).withId("server_1").withVm(aVm().withSize(21))));
@@ -55,7 +50,6 @@ public class DatacenterTest extends TestCase {
         assertThat(theVmWasInstalledOnAServer(), is(false));
     }
 
-    @Test
     public void testADatacenterWithTwoServersWithOnlyOneHavingEnoughSpaceForTheVmWillInstallTheVmOnIt() {
         Given(aVm().withSize(17));
         Given(aDatacenter()
@@ -67,6 +61,21 @@ public class DatacenterTest extends TestCase {
 
         assertThat(theVmWasInstalledOnAServer(), is(true));
         assertThat(theServerNameTheVmWasInstalledOn(), is("server_2"));
+    }
+
+    public void testADatacenterWithServersWillInstallTheVmOnTheOneHavingLessUtilizationPercentage() {
+        Given(aVm().withSize(20));
+        Given(aDatacenter()
+                .with(aServer().withCapacity(105).withId("server_1").withVm(aVm().withSize(55)).withVm(aVm().withSize(5)))  // 57% utilization
+                .with(aServer().withCapacity(105).withId("server_2").withVm(aVm().withSize(57)).withVm(aVm().withSize(4)))  // 58% utilization
+                .with(aServer().withCapacity(105).withId("server_3").withVm(aVm().withSize(56)).withVm(aVm().withSize(3)))  // 56% utilization
+                .with(aServer().withCapacity(105).withId("server_4").withVm(aVm().withSize(60)).withVm(aVm().withSize(2)))  // 59% utilization
+        );
+
+        WhenFindingAServerForTheVm();
+
+        assertThat(theVmWasInstalledOnAServer(), is(true));
+        assertThat(theServerNameTheVmWasInstalledOn(), is("server_3"));
     }
 
     @Override
@@ -85,7 +94,7 @@ public class DatacenterTest extends TestCase {
     }
 
     private void WhenFindingAServerForTheVm() {
-        returnValue = datacenter.placeVm(vm);
+        returnValue = datacenter.installVm(vm);
     }
 
     private boolean theVmWasInstalledOnAServer()
