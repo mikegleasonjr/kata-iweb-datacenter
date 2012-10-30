@@ -23,17 +23,17 @@ public class ServerTest {
     }
 
     @Test
-    public void aHalfFullServerHas50PctUtilization() {
-        given(aServer().withCapacity(50).withVm(aVm().withSize(25)));
-
-        assertThat(theUtilizationPercentageOfTheServer(), is(50));
-    }
-
-    @Test
     public void aFullServerHas100PctUtilization() {
         given(aServer().withCapacity(52).withVm(aVm().withSize(26)).withVm(aVm().withSize(26)));
 
         assertThat(theUtilizationPercentageOfTheServer(), is(100));
+    }
+
+    @Test
+    public void aHalfFullServerHas50PctUtilization() {
+        given(aServer().withCapacity(50).withVm(aVm().withSize(25)));
+
+        assertThat(theUtilizationPercentageOfTheServer(), is(50));
     }
 
     @After

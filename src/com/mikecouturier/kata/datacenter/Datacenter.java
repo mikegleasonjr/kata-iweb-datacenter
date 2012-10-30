@@ -20,12 +20,10 @@ public class Datacenter {
     }
 
     private Server findLessUsedServerWithEnoughSpace(Vm vm) {
-        int lowestUtilizationPct = 100;
         Server lighterServer = null;
 
         for (Server s : datacenter) {
-            if (serverIsLighter(s, lowestUtilizationPct) && vmFitsOnServer(vm, s)) {
-                lowestUtilizationPct = s.getUtilizationPct();
+            if (vmFitsOnServer(vm, s) && serverIsLighter(s, lighterServer != null ? lighterServer.getUtilizationPct() : 100)) {
                 lighterServer = s;
             }
         }
