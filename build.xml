@@ -1,0 +1,44 @@
+<project>
+	
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="build/classes"/>
+		<javac includeantruntime="false" srcdir="src" destdir="build/classes"/>
+	</target>
+
+	<target name="compile-test" depends="compile">
+		<javac includeantruntime="false" srcdir="test"  destdir="build/classes">
+			<classpath path="lib/junit-4.11-beta-1.jar"/>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="build/jar"/>
+		<jar destfile="build/jar/kata-iweb-datacenter.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="com.mikecouturier.kata.Program"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<java jar="build/jar/kata-iweb-datacenter.jar" fork="true"/>
+	</target>
+
+	<target name="test" depends="compile-test">
+		<junit>
+			<classpath path="lib/junit-4.11-beta-1.jar"/>
+			<classpath path="build/classes"/>
+			<formatter type="plain" usefile="false" />
+			<batchtest fork="yes">
+				<fileset dir="build/classes">
+					<include name="**/*Test*.class"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+</project>
