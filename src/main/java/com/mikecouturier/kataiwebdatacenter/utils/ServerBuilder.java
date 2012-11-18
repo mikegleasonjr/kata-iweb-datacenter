@@ -1,7 +1,7 @@
-package com.mikecouturier.kata.utils;
+package com.mikecouturier.kataiwebdatacenter.utils;
 
-import com.mikecouturier.kata.datacenter.Server;
-import com.mikecouturier.kata.datacenter.Vm;
+import com.mikecouturier.kataiwebdatacenter.Server;
+import com.mikecouturier.kataiwebdatacenter.Vm;
 
 import java.util.ArrayList;
 import java.util.List;

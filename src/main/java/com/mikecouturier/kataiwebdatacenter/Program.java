@@ -1,14 +1,11 @@
-package com.mikecouturier.kata;
-
-import com.mikecouturier.kata.datacenter.Datacenter;
-import com.mikecouturier.kata.datacenter.Vm;
+package com.mikecouturier.kataiwebdatacenter;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.mikecouturier.kata.utils.DatacenterBuilder.aDatacenter;
-import static com.mikecouturier.kata.utils.ServerBuilder.aServer;
-import static com.mikecouturier.kata.utils.VmBuilder.aVm;
+import static com.mikecouturier.kataiwebdatacenter.utils.DatacenterBuilder.aDatacenter;
+import static com.mikecouturier.kataiwebdatacenter.utils.ServerBuilder.aServer;
+import static com.mikecouturier.kataiwebdatacenter.utils.VmBuilder.aVm;
 
 public class Program {
 

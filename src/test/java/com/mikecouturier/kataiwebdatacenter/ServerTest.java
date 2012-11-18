@@ -1,15 +1,11 @@
-package com.mikecouturier.kata.datacenter;
+package com.mikecouturier.kataiwebdatacenter;
 
-import com.mikecouturier.kata.utils.DatacenterBuilder;
-import com.mikecouturier.kata.utils.ServerBuilder;
-import com.mikecouturier.kata.utils.VmBuilder;
-import junit.framework.TestCase;
+import com.mikecouturier.kataiwebdatacenter.utils.ServerBuilder;
 import org.junit.After;
 import org.junit.Test;
 
-import static com.mikecouturier.kata.utils.DatacenterBuilder.aDatacenter;
-import static com.mikecouturier.kata.utils.ServerBuilder.aServer;
-import static com.mikecouturier.kata.utils.VmBuilder.aVm;
+import static com.mikecouturier.kataiwebdatacenter.utils.ServerBuilder.aServer;
+import static com.mikecouturier.kataiwebdatacenter.utils.VmBuilder.aVm;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

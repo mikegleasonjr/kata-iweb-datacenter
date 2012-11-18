@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mikecouturier</groupId>
+    <artifactId>kata-iweb-datacenter</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>kata-iweb-datacenter</name>
+    <description>At iWeb Technologies, we send a little technical test to those applying for a job. I decided to take the challenge myself and write it in TDD to learn it and practice it.</description>
+    <url>https://github.com/mikegleasonjr/kata-iweb-datacenter</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>git@github.com:mikegleasonjr/kata-iweb-datacenter.git</url>
+        <connection>scm:git:git@github.com:mikegleasonjr/kata-iweb-datacenter.git</connection>
+        <developerConnection>scm:git:git@github.com:mikegleasonjr/kata-iweb-datacenter.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <id>mikegleasonjr</id>
+            <name>Mike Gleason jr Couturier</name>
+            <email>mikegleasonjr@gmail.com</email>
+        </developer>
+    </developers>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

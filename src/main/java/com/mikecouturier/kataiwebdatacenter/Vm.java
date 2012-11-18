@@ -1,4 +1,4 @@
-package com.mikecouturier.kata.datacenter;
+package com.mikecouturier.kataiwebdatacenter;
 
 public class Vm {
     private int size;

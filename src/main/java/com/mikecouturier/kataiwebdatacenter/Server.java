@@ -1,4 +1,4 @@
-package com.mikecouturier.kata.datacenter;
+package com.mikecouturier.kataiwebdatacenter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
-package com.mikecouturier.kata.utils;
-import com.mikecouturier.kata.datacenter.Vm;
+package com.mikecouturier.kataiwebdatacenter.utils;
+
+import com.mikecouturier.kataiwebdatacenter.Vm;
 
 public class VmBuilder {
     private int size;
