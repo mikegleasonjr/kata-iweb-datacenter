@@ -71,3 +71,17 @@ As output, the application has distributed the virtual machines on the available
     }]
 }
 ```
+
+## Running the program
+
+To run the tests:
+
+```
+mvn clean test
+```
+
+To run the program:
+
+```
+mvn exec:java
+```
