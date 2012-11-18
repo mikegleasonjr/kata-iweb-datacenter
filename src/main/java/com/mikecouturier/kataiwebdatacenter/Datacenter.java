@@ -1,42 +1,26 @@
 package com.mikecouturier.kataiwebdatacenter;
 
+import com.mikecouturier.kataiwebdatacenter.strategy.ServerFinder;
+
 import java.util.List;
 
 public class Datacenter {
+    private ServerFinder serverFinder;
     private List<Server> datacenter;
 
-    public Datacenter(List<Server> datacenter) {
+    public Datacenter(List<Server> datacenter, ServerFinder serverFinder) {
         this.datacenter = datacenter;
+        this.serverFinder = serverFinder;
     }
 
     public boolean installVm(Vm vm) {
-        Server lighterServer = findLessUsedServerWithEnoughSpace(vm);
+        Server availableServer = serverFinder.findAvailableServer(vm, datacenter);
 
-        if (lighterServer != null) {
-            return lighterServer.installVm(vm);
+        if (availableServer != null) {
+            return availableServer.installVm(vm);
         }
 
         return false;
-    }
-
-    private Server findLessUsedServerWithEnoughSpace(Vm vm) {
-        Server lighterServer = null;
-
-        for (Server s : datacenter) {
-            if (vmFitsOnServer(vm, s) && serverIsLighter(s, lighterServer != null ? lighterServer.getUtilizationPct() : 100)) {
-                lighterServer = s;
-            }
-        }
-
-        return lighterServer;
-    }
-
-    private boolean serverIsLighter(Server s, int lowestPct) {
-        return s.getUtilizationPct() < lowestPct;
-    }
-
-    private boolean vmFitsOnServer(Vm vm, Server s) {
-        return vm.getSize() <= s.getAvailableSpace();
     }
 
     public Server findVm(Vm vm) {
